@@ -1,8 +1,53 @@
 [
     {
-        "text": "פוסט ראשון בנושא כדורסל"
+        "text": "What an incredible night in the Champions League! Last night's match between Barcelona and Bayern Munich was a nail-biter, with Barcelona securing a last-minute victory. This season is shaping up to be one of the most exciting in recent memory.",
+        "date": "2024-12-10T21:00:00Z",
+        "comments": [
+            {
+                "text": "Barcelona's last-minute goal was unbelievable! What a comeback!",
+                "date": "2024-12-10T21:15:00Z"
+            },
+            {
+                "text": "Bayern Munich were unlucky, but Barcelona deserved the win. Their attacking play was superb!",
+                "date": "2024-12-10T21:45:00Z"
+            },
+            {
+                "text": "This season has been full of surprises. Can't wait to see how both teams perform in the knockout stages.",
+                "date": "2024-12-10T22:30:00Z"
+            }
+        ]
     },
     {
-        "text": "פוסט שני בנושא בישול"
+        "text": "Juventus delivered a dominant performance against PSG, securing a crucial 2-0 win. Their defense was rock-solid, and the midfield controlled the game. This victory boosts their chances of advancing to the next round.",
+        "date": "2024-12-12T19:30:00Z",
+        "comments": [
+            {
+                "text": "Juventus played with such precision! PSG couldn’t break through their defense.",
+                "date": "2024-12-12T20:00:00Z"
+            }
+        ]
+    },
+    {
+        "text": "Liverpool and Real Madrid faced off in another iconic Champions League encounter. Both teams had their moments, but it ended in a 1-1 draw. It seems like this group stage is going to be one of the toughest ever.",
+        "date": "2024-12-14T22:15:00Z",
+        "comments": []
+    },
+    {
+        "text": "Chelsea vs. Manchester City turned out to be one of the most thrilling matches of the week, with Manchester City clinching a 3-2 victory. The final minutes had everyone on the edge of their seats as City held on to secure the three points.",
+        "date": "2024-12-16T20:45:00Z",
+        "comments": [
+            {
+                "text": "What a thriller! Manchester City showed their resilience in those final moments.",
+                "date": "2024-12-16T21:00:00Z"
+            },
+            {
+                "text": "Chelsea fought hard, but City’s attack was too much to handle. Great game overall.",
+                "date": "2024-12-16T21:15:00Z"
+            },
+            {
+                "text": "This season’s Champions League has been amazing! So many high-quality matches.",
+                "date": "2024-12-16T21:45:00Z"
+            }
+        ]
     }
 ]

@@ -1,8 +1,48 @@
 [
     {
-        "text": "פוסט ראשון בנושא כדורסל"
+        "text": "Mastering the art of grilling steak is a game-changer. Whether you prefer it rare or well-done, the key lies in the perfect seasoning and cooking time. The sizzle on the grill is what makes it all worth it!",
+        "date": "2024-12-05T10:00:00Z",
+        "comments": [
+            {
+                "text": "The secret is all in the seasoning! I love using a bit of garlic and rosemary.",
+                "date": "2024-12-05T11:30:00Z"
+            },
+            {
+                "text": "Grilling a perfect steak is truly an art. It's all about getting the right temperature on the grill.",
+                "date": "2024-12-05T12:15:00Z"
+            }
+        ]
     },
     {
-        "text": "פוסט שני בנושא בישול"
+        "text": "Slow-cooked beef ribs are a crowd favorite. The tenderness that comes from hours of slow cooking is unmatched. Pair them with a spicy barbecue sauce, and you have a meal that everyone will rave about.",
+        "date": "2024-12-15T14:30:00Z",
+        "comments": [
+            {
+                "text": "The slow-cooked ribs are the best! I always marinate mine overnight to enhance the flavor.",
+                "date": "2024-12-15T15:45:00Z"
+            },
+            {
+                "text": "Nothing beats a good rack of ribs! I love adding a touch of honey to my sauce for a sweet kick.",
+                "date": "2024-12-15T16:00:00Z"
+            },
+            {
+                "text": "I tried this recipe last week, and it was a hit! The meat just fell off the bone.",
+                "date": "2024-12-15T17:00:00Z"
+            }
+        ]
+    },
+    {
+        "text": "Barbecuing a whole chicken is the perfect weekend meal. It’s all about getting the right balance of smokiness and crispiness on the skin. Don’t forget to let the chicken rest before carving for the juiciest result!",
+        "date": "2024-12-20T18:00:00Z",
+        "comments": [
+            {
+                "text": "The best way to get the skin crispy is by using indirect heat on the grill. It makes such a difference!",
+                "date": "2024-12-20T19:15:00Z"
+            },
+            {
+                "text": "I love using a dry rub for the chicken. It really brings out the flavors while keeping it juicy.",
+                "date": "2024-12-20T19:30:00Z"
+            }
+        ]
     }
 ]

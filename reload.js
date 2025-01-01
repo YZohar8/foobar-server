@@ -38,22 +38,23 @@ const disconnectDB = async () => {
 
 
 
-const getRandomUser = async () => {
+const getRandomUser = async (userId) => {
     try {
+        previouslySelectedUsers.push(userId);
         let users = await User.find({ _id: { $nin: previouslySelectedUsers.map(id => new mongoose.Types.ObjectId(id)) } }).lean();
 
         if (users.length === 0) {
             previouslySelectedUsers = [];
-            users =  await User.find(); 
+            previouslySelectedUsers.push(userId);
+            users = await User.find({ _id: { $nin: previouslySelectedUsers.map(id => new mongoose.Types.ObjectId(id)) } }).lean();; 
         }
 
         const randomIndex = Math.floor(Math.random() * users.length);
         const randomUser = users[randomIndex];
         previouslySelectedUsers.push(randomUser._id.toString());
 
-        console.log("selected user: ", randomUser);
-
         return randomUser;
+
     } catch (error) {
         console.error("Error selecting random user:", error);
         throw error;
@@ -69,7 +70,7 @@ const loadPostsFromJson = async (userId, i) => {
             const comments = [];
             if (post.comments) {
                 for (const comment of post.comments) {
-                    const randomUser = await getRandomUser();
+                    const randomUser = await getRandomUser(userId);
                     comments.push({
                         author: randomUser._id,
                         text: comment.text,
@@ -99,21 +100,29 @@ const loadPostsFromJson = async (userId, i) => {
 const createInitialUsers = async () => {
     try {
         const usersData = usersDataFile;
+        
+        const users = [];
         for (let i = 0; i < usersData.length; i++) {
             const userData = usersData[i];
             const user = new User(userData);
-            await user.save();
-            
+            users.push(user); 
+        }
+        // save users to mongodb
+        await User.insertMany(users);
+        console.log("Users have been added successfully");
 
-            // בעיה עם זה בעצם בראשון יש רק user 1 לכן צריך להוציא את זה החוצה.
-            const posts = await loadPostsFromJson(user._id, i);
+        // add posts
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+            const posts = await loadPostsFromJson(user._id, i); 
             if (posts.length > 0) {
                 await Post.insertMany(posts);
             }
         }
-        console.log("succses to add users and post");
+        console.log("Posts have been added successfully");
+
     } catch (error) {
-        console.log("failed to add users and post: ", error);
+        console.log("Failed to add users and posts: ", error);
     }
 };
 

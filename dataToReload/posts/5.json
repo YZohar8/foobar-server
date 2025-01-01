@@ -1,8 +1,114 @@
 [
     {
-        "text": "פוסט ראשון בנושא כדורסל"
+        "text": "The Arctic ice is melting at an alarming rate, and scientists warn of devastating consequences if global temperatures continue to rise. We must act now to combat climate change before it’s too late.",
+        "date": "2024-12-21T14:30:00Z",
+        "comments": [
+            {
+                "text": "It’s heartbreaking to see the Arctic disappearing. We need stronger policies to reduce emissions!",
+                "date": "2024-12-21T15:00:00Z"
+            },
+            {
+                "text": "What can individuals do to help? This is such an overwhelming issue.",
+                "date": "2024-12-21T16:45:00Z"
+            },
+            {
+                "text": "I hope governments worldwide take this seriously before it’s too late.",
+                "date": "2024-12-21T18:00:00Z"
+            }
+        ]
     },
     {
-        "text": "פוסט שני בנושא בישול"
+        "text": "Recycling isn’t just about throwing items in the right bin. It’s about reducing waste altogether and reusing materials whenever possible. Let’s all commit to better recycling habits in 2024!",
+        "date": "2024-12-18T10:15:00Z",
+        "comments": [
+            {
+                "text": "Education about proper recycling is so important. Many people don’t know what can and can’t be recycled.",
+                "date": "2024-12-18T11:00:00Z"
+            },
+            {
+                "text": "Great message! I’ve started composting to reduce my waste footprint.",
+                "date": "2024-12-18T12:30:00Z"
+            }
+        ]
+    },
+    {
+        "text": "Last night’s NBA game between the Lakers and the Warriors was a classic! LeBron’s clutch performance in the fourth quarter sealed the win for the Lakers. What a game!",
+        "date": "2024-12-22T02:00:00Z",
+        "comments": [
+            {
+                "text": "LeBron is unstoppable! His ability to deliver under pressure is unmatched.",
+                "date": "2024-12-22T02:15:00Z"
+            },
+            {
+                "text": "The Warriors played well, but they just couldn’t close it out in the end.",
+                "date": "2024-12-22T02:45:00Z"
+            },
+            {
+                "text": "This season has been incredible so far. So many great games already!",
+                "date": "2024-12-22T03:30:00Z"
+            },
+            {
+                "text": "Lakers fans must be celebrating tonight! That was an amazing performance.",
+                "date": "2024-12-22T04:00:00Z"
+            }
+        ]
+    },
+    {
+        "text": "Sustainability tip: Use glass or stainless steel containers instead of single-use plastic. Small changes in our daily habits can make a big difference over time.",
+        "date": "2024-12-15T08:45:00Z",
+        "comments": [
+            {
+                "text": "I’ve switched to glass containers, and they’re so much better. They last forever!",
+                "date": "2024-12-15T09:30:00Z"
+            },
+            {
+                "text": "It’s a simple change, but it feels great knowing I’m reducing waste.",
+                "date": "2024-12-15T10:15:00Z"
+            }
+        ]
+    },
+    {
+        "text": "There’s nothing like slow-cooked barbecue ribs on a chilly winter evening. The tender meat, the smoky flavor—it’s the ultimate comfort food. What’s your favorite BBQ dish?",
+        "date": "2024-12-19T19:00:00Z",
+        "comments": [
+            {
+                "text": "BBQ ribs are my favorite too! Have you tried them with a honey glaze?",
+                "date": "2024-12-19T19:30:00Z"
+            },
+            {
+                "text": "Brisket is my go-to BBQ dish, but ribs are a close second.",
+                "date": "2024-12-19T20:15:00Z"
+            },
+            {
+                "text": "Can’t go wrong with slow-cooked ribs. Perfect for winter nights!",
+                "date": "2024-12-19T21:00:00Z"
+            },
+            {
+                "text": "Any tips for getting that perfect smoky flavor at home?",
+                "date": "2024-12-19T21:30:00Z"
+            },
+            {
+                "text": "BBQ is my passion! It’s all about the rub and the timing.",
+                "date": "2024-12-19T22:00:00Z"
+            }
+        ]
+    },
+    {
+        "text": "Manchester United’s dramatic victory over Real Madrid in last week’s friendly was a treat for football fans. The late winner in extra time showed the team’s grit and determination.",
+        "date": "2024-12-13T21:00:00Z",
+        "comments": [
+            {
+                "text": "What a game! United played with so much heart.",
+                "date": "2024-12-13T21:15:00Z"
+            },
+            {
+                "text": "Real Madrid were strong, but United wanted it more. Amazing match!",
+                "date": "2024-12-13T22:00:00Z"
+            },
+            {
+                "text": "This game reminded me why I love football. So much drama and passion!",
+                "date": "2024-12-13T23:00:00Z"
+            }
+        ]
     }
 ]
