@@ -9,11 +9,16 @@ import apiRoutes from './routes/api.js'
 dotenv.config(); 
 const server = express();
 
+const corsOptions = {
+    origin: /http:\/\/localhost:\d+$/,  
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 server.use(express.static('public'));
 server.use(express.json());
-server.use(cors());
+server.use(cors(corsOptions));
 
 
 // connect to mongodb

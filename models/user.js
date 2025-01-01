@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     image: { type: String, required: true },
     friends: [{
         friendId: { type: Schema.Types.ObjectId, ref: 'User' },
-        status: { type: String, enum: ['pending', 'approved', 's-pending'], default: 'pending' }
+        status: { type: String, enum: ['pending', 'approved', 's-pending', 'not_friends'], default: 'pending' }
     }]
 }
 );
