@@ -6,7 +6,7 @@ import cors from 'cors';
 import path from 'path';
 import apiRoutes from './routes/api.js'
 
-dotenv.config(); 
+dotenv.config({ path: path.resolve('config', '.env') });
 const server = express();
 
 const corsOptions = {

@@ -59,7 +59,7 @@ const getFriendshipStatus = async (userId, friendId) => {
         }
 
         const friend = user.friends.find(friend =>
-            friend.friendId && friend.friendId.equals(new ObjectId(friendId)) // השתמש ב-new ObjectId
+            friend.friendId && friend.friendId.equals(new ObjectId(friendId))
         );
 
         if (!friend) {

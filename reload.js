@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import path from 'path';
 import dotenv from 'dotenv';
 import User from "./models/user.js"; 
 import Post from "./models/post.js"; 
@@ -14,7 +15,7 @@ import sixFile from './dataToReload/posts/5.json' assert {type: "json"}
 
 const postArray = [firstFile, secondFile, thirdFile, fourFile, fiveFile, sixFile];
 let previouslySelectedUsers = [];
-dotenv.config(); 
+dotenv.config({ path: path.resolve('config', '.env') });
 
 
 const connectDB = async () => {

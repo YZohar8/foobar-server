@@ -8,7 +8,7 @@ import commentsServices from './commentsServices.js';
 const validateUserData = async (userData, isUpdate = false) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    const base64ImagePattern = /^data:image\/(jpeg|jpg|png);base64,([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+    const base64ImagePattern = /^data:image\/(jpeg|jpg|png);base64,/;
 
 
     if (userData.email && !emailPattern.test(userData.email)) {
