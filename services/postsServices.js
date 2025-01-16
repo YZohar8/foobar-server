@@ -69,6 +69,7 @@ const getPostsForOneUser = async (userId) => {
             .exec();
 
 
+        
         // If there are posts, format the result nicely
         if (userPosts.length > 0) {
             const posts = userPosts.map(post => ({

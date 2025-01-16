@@ -40,7 +40,11 @@ const getPostsForOneUser = async (req, res) => {
 
 const updatePost = async (req, res) => {
     try {
-        await postsServices.updatePost(req.params.postId, req.body);
+        let postId = req.params.postId;
+        if (!postId) {
+            postId = req.params.pid;
+        }
+        await postsServices.updatePost(postId, req.body);
         return res.status(200).json({ message: 'Post updated' });
     }
     catch (error) {
@@ -51,7 +55,11 @@ const updatePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
     try {
-        await postsServices.deletePost(req.params.postId);
+        let postId = req.params.postId;
+        if (!postId) {
+            postId = req.params.pid;
+        }
+        await postsServices.deletePost(postId);
         return res.status(200).json({ message: 'Post delete' });
     }
     catch (error) {

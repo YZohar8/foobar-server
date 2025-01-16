@@ -27,6 +27,10 @@ const validateUserData = async (userData, isUpdate = false) => {
         }
     }
 
+    if (userData.name.length > 16) {
+        userData.name = userData.name.slice(0, 16); 
+    }
+
     // Updated image file type validation for base64 strings
     if (userData.image && !base64ImagePattern.test(userData.image)) {
         throw new Error('Unsupported or invalid base64 image. Allowed types are .jpg, .jpeg, .png.');
@@ -121,10 +125,14 @@ const updateUser = async (userId, image, name) => {
         error.code = 400; // Bad Request
         throw error;
     }
+    let newName = name;
+    if (name.length > 16) {
+        newName = name.slice(0, 16);
+    }
 
     const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $set: { image, name } },
+        { $set: { image, name: newName } },
         { new: true, runValidators: true }
     );
 

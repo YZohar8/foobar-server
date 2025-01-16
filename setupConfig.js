@@ -1,6 +1,10 @@
 import { mkdir, writeFile } from 'fs/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const configFolderPath = join(__dirname, 'config');
@@ -30,11 +34,49 @@ async function writeFileAsync(filePath, content) {
     }
 }
 
-// Main function to orchestrate the creation of config folder and files
+// Function to check if Node.js and npm are installed
+async function checkAndInstallNode() {
+    try {
+        console.log('Checking if Node.js and npm are installed...');
+        const { stdout: nodeVersion } = await execAsync('node -v');
+        const { stdout: npmVersion } = await execAsync('npm -v');
+        console.log(`Node.js is installed: ${nodeVersion.trim()}`);
+        console.log(`npm is installed: ${npmVersion.trim()}`);
+    } catch (err) {
+        console.warn('Node.js or npm is not installed. Installing them now...');
+        if (process.platform === 'win32') {
+            console.error('Please manually install Node.js and npm on Windows: https://nodejs.org/');
+            throw new Error('Node.js and npm installation not automated on Windows.');
+        } else {
+            await execAsync('sudo apt update && sudo apt install -y nodejs npm');
+            console.log('Node.js and npm have been installed successfully!');
+        }
+    }
+}
+
+// Function to install npm packages
+async function installPackage(packageName) {
+    try {
+        console.log(`Installing ${packageName}...`);
+        const { stdout, stderr } = await execAsync(`npm install ${packageName}`);
+        console.log(stdout);
+        if (stderr) {
+            console.error(stderr);
+        }
+        console.log(`${packageName} has been installed successfully!`);
+    } catch (err) {
+        console.error(`Failed to install ${packageName}:`, err.message);
+        throw err;
+    }
+}
+
+// Main function to orchestrate the setup
 async function setupConfigFiles() {
+    await checkAndInstallNode();
     await ensureDirSync(configFolderPath);
     await writeFileAsync(join(configFolderPath, '.env'), envContent);
     await writeFileAsync(join(configFolderPath, '.env.local'), envContent);
+    await installPackage('jsonwebtoken');
 }
 
 setupConfigFiles().catch(console.error);
