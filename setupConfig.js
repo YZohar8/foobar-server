@@ -8,7 +8,7 @@ const execAsync = promisify(exec);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const configFolderPath = join(__dirname, 'config');
-const envContent = `CONNECTION_STRING='mongodb://localhost:27017/foobar_my_db'
+const envContent = `CONNECTION_STRING='mongodb://127.0.0.1:27017/foobar_my_db'
 PORT=8080
 JWT_SECRET='secret2548567589gtyr'
 NODE_ENV='development'

@@ -4,13 +4,16 @@ import dotenv from 'dotenv';
 import User from "./models/user.js"; 
 import Post from "./models/post.js"; 
 import friendsServices from "./services/friendsServices.js"
-import usersDataFile from './dataToReload/usersData.json' assert { type: "json" }
-import firstFile from './dataToReload/posts/0.json' assert { type: "json" }
-import secondFile from './dataToReload/posts/1.json' assert { type: "json" }
-import thirdFile from './dataToReload/posts/2.json' assert { type: "json" }
-import fourFile from './dataToReload/posts/3.json' assert { type: "json" }
-import fiveFile from './dataToReload/posts/4.json' assert { type: "json" }
-import sixFile from './dataToReload/posts/5.json' assert {type: "json"}
+import fs from 'fs';
+
+const usersDataFile = JSON.parse(fs.readFileSync('./dataToReload/usersData.json', 'utf-8'));
+const firstFile = JSON.parse(fs.readFileSync('./dataToReload/posts/0.json', 'utf-8'));
+const secondFile = JSON.parse(fs.readFileSync('./dataToReload/posts/1.json', 'utf-8'));
+const thirdFile = JSON.parse(fs.readFileSync('./dataToReload/posts/2.json', 'utf-8'));
+const fourFile = JSON.parse(fs.readFileSync('./dataToReload/posts/3.json', 'utf-8'));
+const fiveFile = JSON.parse(fs.readFileSync('./dataToReload/posts/4.json', 'utf-8'));
+const sixFile = JSON.parse(fs.readFileSync('./dataToReload/posts/5.json', 'utf-8'));
+
 
 
 const postArray = [firstFile, secondFile, thirdFile, fourFile, fiveFile, sixFile];
