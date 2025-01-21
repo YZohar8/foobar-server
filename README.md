@@ -11,6 +11,19 @@ This project is a web server running on port **8080**. It serves an HTML page an
 
 Before running the server, make sure you meet the following requirements:
 
+### first Clone the Project and install nodejs
+Clone the repository:
+   ```bash
+   git clone https://github.com/YZohar8/foobar-server.git
+   cd Foobar-Bloom-filter
+   git checkout part_3_final
+   ```
+
+   ```bash
+   sudo apt update
+   sudo apt install -y nodejs npm
+   ```
+
 ### 1. **Install MongoDB**
 
 MongoDB is required to store data for the project. You can either use a local MongoDB server or a cloud-based instance (e.g., MongoDB Atlas).
