@@ -3,8 +3,26 @@
 
 ## Project Overview
 
-This project is a web server running on port **8080**. It serves an HTML page and supports multiple endpoints for user, posts, tokens, and other resources. You can interact with these endpoints through HTTP requests.
+This project is a web server running on port **8080**. It serves an HTML page and supports multiple endpoints for users, posts, tokens, and other resources. You can interact with these endpoints through HTTP requests.
 
+### URL Filtering Integration
+
+The project integrates with a separate server to maintain a list of blocked URLs. Every time a post is uploaded, the server checks that no URLs in the post are part of the blocked list.
+
+To enable this feature, ensure you run the **Foobar Bloom Filter** server from the repository located at:
+
+[github.com/YZohar8/Foobar-Bloom-filter/tree/part-4](https://github.com/YZohar8/Foobar-Bloom-filter/tree/part-4)
+
+Follow these steps to start the blocked URL server:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YZohar8/Foobar-Bloom-filter.git
+   cd Foobar-Bloom-filter
+   git checkout part-4
+   ```
+
+and run the bloom-filter-server.
 ---
 
 ## Prerequisites
@@ -17,6 +35,8 @@ MongoDB is required to store data for the project. You can either use a local Mo
 
 - **Local MongoDB**: Download and install MongoDB from the [official website](https://www.mongodb.com/try/download/community).
 - **MongoDB Atlas**: Alternatively, you can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to set up a cloud-based database. If you use MongoDB Atlas, update the `CONNECTION_STRING` in the `.env` file accordingly.
+
+---
 
 ### 2. **Create `.env` Configuration File**
 
@@ -33,9 +53,7 @@ The `.env` file stores important environment variables for your application. Fol
    ```env
    # Database Connection
    CONNECTION_STRING=mongodb://localhost:27017/foobar
-   # Uncomment and use the below line if using a cloud-based MongoDB instance
-   # CONNECTION_STRING=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
+   
    # Port for the server
    PORT=8080
 
@@ -44,9 +62,15 @@ The `.env` file stores important environment variables for your application. Fol
 
    # JWT Secret key for authentication
    JWT_SECRET=your_secret_key_here
+
+   PORT_BLOOM_FILTER=8081
+   HOST_BLOOM_FILTER='127.0.0.1'
+
    ```
 
-2. **Important**: Replace the `CONNECTION_STRING` with your actual database connection string, especially if you're using a cloud instance like MongoDB Atlas.
+2. **Important**: Replace the `CONNECTION_STRING` and `HOST_BLOOM_FILTER` with your actual database connection string, especially if you're using a cloud instance like MongoDB Atlas.
+
+---
 
 ### 3. **Install Project Dependencies**
 
@@ -63,7 +87,7 @@ This will install all the required libraries for the project to run.
 Make sure your MongoDB server is running:
 
 - If you're using a **local MongoDB server**, ensure it’s running on port `27017` (default).
-- If you're using **MongoDB Atlas**, ensure you’ve updated your `.env` file with the correct connection string.
+- If you're using **MongoDB Compass**, ensure you’ve updated your `.env` file with the correct connection string.
 
 ---
 
