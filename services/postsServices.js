@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import Post from "../models/post.js";
 import {ObjectId} from "mongodb";
+import checkPost from "./checkPosts.js";
 
 const getPosts = async (userId) => {
     try {
@@ -69,6 +70,7 @@ const getPostsForOneUser = async (userId) => {
             .exec();
 
 
+        
         // If there are posts, format the result nicely
         if (userPosts.length > 0) {
             const posts = userPosts.map(post => ({
@@ -200,7 +202,20 @@ const getPostsForOneUserWithSearch = async (text, userId) => {
 
 
 const createPost = async (userId, postData) => {
-
+    let result
+    try {
+        result = await checkPost.checkPostText(postData.text);
+    } catch (err){
+        const error = new Error('problem check with bloom filter');
+        error.code = 409;
+        throw error;
+    }
+    if (!result) {
+        const error = new Error('you are using a blocked URL in your post');
+        error.code = 409;
+        throw error;
+    }
+    
     const newPost = new Post({
         author: userId,
         text: postData.text,
@@ -223,6 +238,19 @@ const createPost = async (userId, postData) => {
 
 const updatePost = async (postId, postData) => {
     let updateData = { ...postData };
+    let result
+    try {
+        result = await checkPost.checkPostText(updateData.text);
+    } catch (err){
+        const error = new Error('problem check with bloom filter');
+        error.code = 409;
+        throw error;
+    }
+    if (!result) {
+        const error = new Error('you are using a blocked URL in your post');
+        error.code = 409;
+        throw error;
+    }
 
     const updatedPost = await Post.findByIdAndUpdate(postId, updateData, { new: true });
     if (!updatedPost) {

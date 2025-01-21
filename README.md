@@ -1,64 +1,147 @@
+
 # README
 
 ## Project Overview
 
-This project is a web server running on port **8080**. When a user navigates to the server's URL in their browser, the server serves an HTML page for the application.
+This project is a web server running on port **8080**. It serves an HTML page and supports multiple endpoints for users, posts, tokens, and other resources. You can interact with these endpoints through HTTP requests.
 
+### URL Filtering Integration
+
+The project integrates with a separate server to maintain a list of blocked URLs. Every time a post is uploaded, the server checks that no URLs in the post are part of the blocked list.
+
+To enable this feature, ensure you run the **Foobar Bloom Filter** server from the repository located at:
+
+
+Follow these steps to start the blocked URL server:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YZohar8/Foobar-Bloom-filter.git
+   cd Foobar-Bloom-filter
+   git checkout Part-4
+   ```
+
+and run the bloom-filter-server as explained in the readme file.
 ---
 
 ## Prerequisites
 
-Before running the server, you need to ensure the following requirements are met:
+Before running the server, make sure you meet the following requirements:
 
-1. Create an `.env` file in the root directory of the project with the following variables:
+### first Clone the Project and install nodejs
+Clone the repository:
+   ```bash
+   git clone https://github.com/YZohar8/foobar-server.git
+   cd Foobar-Bloom-filter
+   git checkout part_4_final
+   ```
 
-```env
-# Connect to database
-CONNECTION_STRING=mongodb://localhost:27017/foobar
-# Uncomment and use the below line if connecting to a cloud MongoDB instance
-# CONNECTION_STRING=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+   ```bash
+   sudo apt update
+   sudo apt install -y nodejs npm
+   ```
 
-# Port for the server
-PORT=8080
 
-# Node environment
-NODE_ENV=development
 
-# Secret for JWT authentication
-JWT_SECRET=secret2548567589gtyr
+### 1. **Install MongoDB**
+
+MongoDB is required to store data for the project. You can either use a local MongoDB server or a cloud-based instance (e.g., MongoDB Atlas).
+
+- **Local MongoDB**: Download and install MongoDB from the [official website](https://www.mongodb.com/try/download/community).
+- **MongoDB Atlas**: Alternatively, you can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to set up a cloud-based database. If you use MongoDB Atlas, update the `CONNECTION_STRING` in the `.env` file accordingly.
+
+---
+
+### 2. **Create `.env` Configuration File**
+
+The `.env` file stores important environment variables for your application. Follow the instructions below to create the file:
+
+1. **Run the `setupConfig` script** to generate the necessary configuration files:
+   
+   ```bash
+   node setupConfig.js
+   ```
+
+   This will create a `config` directory and place the `.env` file in it. The `.env` file should contain the following variables:
+
+   ```env
+   # Database Connection
+   CONNECTION_STRING=mongodb://localhost:27017/foobar
+   
+   # Port for the server
+   PORT=8080
+
+   # Node environment (development/production)
+   NODE_ENV=development
+
+   # JWT Secret key for authentication
+   JWT_SECRET=your_secret_key_here
+
+   PORT_BLOOM_FILTER=8081
+   HOST_BLOOM_FILTER='127.0.0.1'
+
+   ```
+
+2. **Important**: Replace the `CONNECTION_STRING` and `HOST_BLOOM_FILTER` with your actual database connection string, especially if you're using a cloud instance like MongoDB Atlas.
+
+---
+
+### 3. **Install Project Dependencies**
+
+Once you have the `.env` file in place, you will need to install the project dependencies. Run the following command in your terminal:
+
+```bash
+npm install
 ```
 
-### Explanation of `.env` Variables:
-- **CONNECTION_STRING**: The connection string for the MongoDB database. Ensure this is correct before running the application.
-- **PORT**: The port on which the server will run. Default is set to `8080`.
-- **NODE_ENV**: Specifies the environment (e.g., `development`, `production`).
-- **JWT_SECRET**: The secret key used for signing JSON Web Tokens.
+This will install all the required libraries for the project to run.
 
-⚠️ **Important**: Verify that the `CONNECTION_STRING` is correct, as this is critical for the application to connect to the database.
+### 4. **MongoDB Server Setup**
+
+Make sure your MongoDB server is running:
+
+- If you're using a **local MongoDB server**, ensure it’s running on port `27017` (default).
+- If you're using **MongoDB Compass**, ensure you’ve updated your `.env` file with the correct connection string.
 
 ---
 
 ## Running the Server
 
-### Step 1: Populate the Database (Optional)
-If the database is empty, you can preload data by running:
+### 1. **Populate the Database (Optional)**
+
+If your MongoDB database is empty and you would like to preload some data, run:
+
 ```bash
 node reload.js
 ```
 
-### Step 2: Start the Server
-To start the server, run:
+This step is optional and only needed if you want to populate the database with initial data.
+
+### 2. **Start the Server**
+
+To start the server, use the following command:
+
 ```bash
 node app.js
+```
+
+The server will start and listen on the port defined in your `.env` file (default is `8080`).
+
+You should see the following output if everything is set up correctly:
+
+```
+Server is running on port 8080
+MongoDB connected
 ```
 
 ---
 
 ## Server Endpoints
 
-The server supports the following main routes:
+The server provides several routes for interacting with users, posts, and other resources. Here's a breakdown of the main API routes:
 
-### Main Route Splits
+### **Main Route Splits**:
+
 ```javascript
 router.use("/users", userRouter);
 router.use("/tokens", tokenRouter);
@@ -68,79 +151,93 @@ router.use("/likes", likesRouter);
 router.use("/comments", commentsRouter);
 ```
 
-Below is a detailed explanation of each route and its functionality.
+### `/users` - User Account Operations
 
----
-
-### `/users`
-Handles operations related to user accounts.
-
-#### Available Endpoints:
+#### Endpoints:
 - `POST /`: Register a new user.
 - `DELETE /`: Delete the authenticated user.
 - `PATCH /`: Update the authenticated user's details.
-- `GET /:id`: Get the details of a specific user by their ID.
+- `GET /:id`: Get the details of a specific user by ID.
 
 ---
 
-### `/tokens`
-Handles token-related operations.
+### `/tokens` - Token Operations
 
-#### Available Endpoints:
+#### Endpoints:
 - `POST /`: Create a new token (e.g., for user authentication).
-- `GET /check`: Verify the validity of a token.
+- `GET /check`: Verify if a token is valid.
 
 ---
 
-### `/posts`
-Handles posts and related operations.
+### `/posts` - Post Operations
 
-#### Available Endpoints:
-- `POST /search`: Get posts for a specific user with search criteria.
-- `POST /search/all`: Search for posts globally.
-- `GET /all/:id`: Get all posts by a specific user ID.
-- `POST /:id`: Create a post for a specific user.
+#### Endpoints:
+- `POST /search`: Search for posts based on user and criteria.
+- `POST /search/all`: Global search for posts.
+- `GET /all/:id`: Get all posts by a specific user.
+- `POST /:id`: Create a new post for a specific user.
 - `GET /:id`: Get posts for one specific user.
 - `PATCH /:postId`: Update a specific post (only if the authenticated user is the author).
 - `DELETE /:postId`: Delete a specific post (only if the authenticated user is the author).
-- `/:postId/comments`: Nested route to manage comments on a specific post.
+- `/:postId/comments`: Manage comments for a specific post.
 
 ---
 
-### `/friends`
-Handles friend-related operations.
+### `/friends` - Friendship Operations
 
-#### Available Endpoints:
-- `GET /approved/:userId`: Get the friend list of a user.
+#### Endpoints:
+- `GET /approved/:userId`: Get the list of approved friends for a user.
 - `GET /pending`: Get a list of pending friend requests.
-- `GET /status/:friendId`: Get the status of a friendship with a specific user.
-- `PATCH /:friendId`: Update the friendship status (e.g., accept or reject a friend request).
+- `GET /status/:friendId`: Check the friendship status with a specific user.
+- `PATCH /:friendId`: Accept or reject a friend request.
 
 ---
 
-### `/likes`
-Handles likes for posts.
+### `/likes` - Post Like Operations
 
-#### Available Endpoints:
-- `PATCH /:postId`: Update the like status for a specific post.
+#### Endpoints:
+- `PATCH /:postId`: Like or unlike a specific post.
 - `GET /:postId`: Check if the authenticated user has liked a specific post.
 
 ---
 
-### `/comments`
-Handles comments on posts.
+### `/comments` - Comment Operations
 
-#### Available Endpoints:
+#### Endpoints:
 - `DELETE /:commentId`: Delete a specific comment (only if the authenticated user is the author).
 - `PATCH /:commentId`: Update a specific comment (only if the authenticated user is the author).
-- `POST /`: Create a new comment.
-- `GET /`: Retrieve all comments for a specific post.
+- `POST /`: Create a new comment for a post.
+- `GET /`: Get all comments for a specific post.
 
 ---
 
 ## Notes
-- Authentication middleware is used extensively to secure the endpoints. For example, `authToken.authenticateToken` ensures that only authenticated users can access the routes.
-- Additional middlewares like `authUser.userIsAuthorComments` or `authUser.verifyReqUserIsUser` validate permissions for certain operations.
 
-Enjoy using the project!
+- **Authentication**: Routes that require authentication use JWT tokens. The token should be passed in the `Authorization` header for protected routes.
+  
+  Example:
+  ```bash
+  Authorization: Bearer <your_jwt_token>
+  ```
 
+- **Middleware**: The application uses middleware to validate requests and ensure that users are authenticated and authorized to access specific routes.
+
+---
+
+## Additional Information
+
+- **JWT Secret**: The JWT secret key is defined in the `.env` file (`JWT_SECRET`). Be sure to change this secret to something unique for your application.
+- **Environment**: The project uses the `NODE_ENV` variable to distinguish between development and production environments. Set this appropriately in your `.env` file.
+
+---
+
+## Troubleshooting
+
+- **MongoDB Connection Issues**: If you receive connection errors to MongoDB, make sure your `CONNECTION_STRING` in `.env` is correct and MongoDB is running (either locally or on MongoDB Atlas).
+- **Port Issues**: If port `8080` is already in use, change the `PORT` value in the `.env` file to another available port.
+
+---
+
+## Enjoy Using the Project!
+
+This project is designed to be a full-stack application with backend routes for user management, posts, comments, and more. Use the above API routes to integrate with your frontend or customize as needed.

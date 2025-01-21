@@ -8,7 +8,7 @@ import commentsServices from './commentsServices.js';
 const validateUserData = async (userData, isUpdate = false) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    const base64ImagePattern = /^data:image\/(jpeg|jpg|png);base64,([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+    const base64ImagePattern = /^data:image\/(jpeg|jpg|png);base64,/;
 
 
     if (userData.email && !emailPattern.test(userData.email)) {
@@ -25,6 +25,10 @@ const validateUserData = async (userData, isUpdate = false) => {
         if (existingUser) {
             throw new Error('Email in use.');
         }
+    }
+
+    if (userData.name.length > 16) {
+        userData.name = userData.name.slice(0, 16); 
     }
 
     // Updated image file type validation for base64 strings
@@ -121,10 +125,14 @@ const updateUser = async (userId, image, name) => {
         error.code = 400; // Bad Request
         throw error;
     }
+    let newName = name;
+    if (name.length > 16) {
+        newName = name.slice(0, 16);
+    }
 
     const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $set: { image, name } },
+        { $set: { image, name: newName } },
         { new: true, runValidators: true }
     );
 

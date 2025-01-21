@@ -2,7 +2,8 @@ import express from 'express';
 import postController from '../controllers/postsController.js';
 import commentsRouter from './commentsRouter.js'
 import authToken from '../middleware/tokenMiddleware.js';
-import authUser from '../middleware/userMiddleware.js'
+import authUser from '../middleware/userMiddleware.js';
+import postsMiddlewere from '../middleware/postsMiddlewere.js';
 
 
 const router = express.Router({ mergeParams: true });
@@ -18,7 +19,7 @@ router.route('/all/:id')
 
 router.route('/:id')
     .post(authToken.authenticateToken, authUser.isRealUser, postController.createPost)
-    .get(authToken.authenticateToken, postController.getPostsForOneUser);
+    .get(authToken.authenticateToken, postsMiddlewere.isMyFriend,  postController.getPostsForOneUser);
 
 
 router.route('/:postId')
