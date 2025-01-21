@@ -15,7 +15,7 @@ Before running the server, make sure you meet the following requirements:
 Clone the repository:
    ```bash
    git clone https://github.com/YZohar8/foobar-server.git
-   cd Foobar-Bloom-filter
+   cd foobar-server
    git checkout part_3_final
    ```
 
