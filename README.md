@@ -11,7 +11,6 @@ The project integrates with a separate server to maintain a list of blocked URLs
 
 To enable this feature, ensure you run the **Foobar Bloom Filter** server from the repository located at:
 
-[github.com/YZohar8/Foobar-Bloom-filter/tree/part-4](https://github.com/YZohar8/Foobar-Bloom-filter/tree/part-4)
 
 Follow these steps to start the blocked URL server:
 
@@ -19,15 +18,30 @@ Follow these steps to start the blocked URL server:
    ```bash
    git clone https://github.com/YZohar8/Foobar-Bloom-filter.git
    cd Foobar-Bloom-filter
-   git checkout part-4
+   git checkout Part-4
    ```
 
-and run the bloom-filter-server.
+and run the bloom-filter-server as explained in the readme file.
 ---
 
 ## Prerequisites
 
 Before running the server, make sure you meet the following requirements:
+
+### first Clone the Project and install nodejs
+Clone the repository:
+   ```bash
+   git clone https://github.com/YZohar8/foobar-server.git
+   cd Foobar-Bloom-filter
+   git checkout part_4_final
+   ```
+
+   ```bash
+   sudo apt update
+   sudo apt install -y nodejs npm
+   ```
+
+
 
 ### 1. **Install MongoDB**
 
