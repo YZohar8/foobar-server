@@ -2,6 +2,9 @@ import connectToBloomFilterServerFun from "../connectToBloomFilterServer.js";
 
 const checkPostText = async (postText) => {
     const urls = await urlsFromText(postText);
+    if (!urls || urls.length === 0) {
+        return true;
+    }
     let result = await connectToBloomFilterServerFun.checkUrlsToBloomFilter(urls);
     return result;
     
