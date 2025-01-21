@@ -83,6 +83,10 @@ The `.env` file stores important environment variables for your application. Fol
    ```
 
 2. **Important**: Replace the `CONNECTION_STRING` and `HOST_BLOOM_FILTER` with your actual database connection string, especially if you're using a cloud instance like MongoDB Atlas.
+3. if is not change and run again
+   ```bash
+   node setupConfig.js
+   ```
 
 ---
 
